@@ -14,6 +14,8 @@ La tienda permite:
 
 Al aplicar el descuento, cada tarjeta cuesta efectivamente **$7.00**, pero al canjearla se recuperan **$10.00**, generando una **ganancia neta de $3.00 por tarjeta** en cada ciclo.
 
+
+
 ```
 Costo con descuento : $7.00 por tarjeta
 Valor de canje      : $10.00 por tarjeta
@@ -37,6 +39,9 @@ Ganancia neta       : +$3.00 por tarjeta
 │  9. Repetir hasta alcanzar $1,000,000        │
 └─────────────────────────────────────────────┘
 ```
+
+- El script realiza un calculo de cuantas tarjetas es posible comprar en base al saldo disponible.
+- La aplicación web no permite agregar mas de 99 unidades al carrito, así que cuando el calculo realizado del total de tarjetas que se pueden comprar es mayor a 99, esta cantidad se queda como el limite máximo en dichos escenarios.
 
 > **Nota:** El POST a `/cart/checkout` responde con un `303 See Other`. El script captura esta redirección manualmente y realiza el GET a `/cart/order-confirmation?order-confirmed=true` para extraer los códigos de las tarjetas.
 
@@ -105,12 +110,12 @@ python portswigger_gift_card.py
 ============================================================
   Iteración #1  |  Store credit: $100.00
 ============================================================
-  Tarjetas totales  : 14  (repartidas en 3 hilo(s): [5, 5, 4])
+  Tarjetas totales  : 14 
   Costo estimado    : $98.00
 
-[*] Fase compra — 3 hilo(s) en paralelo...
-  [T1] Comprando 5 tarjeta(s)...
-  [T1] ✓ 5 código(s) extraído(s)
+[*] Fase compra — 1 hilo(s) en paralelo...
+  [T1] Comprando 14 tarjeta(s)...
+  [T1] ✓ 14 código(s) extraído(s)
 
 [*] Total códigos a canjear: 14
 [*] Fase canje — 10 hilo(s) en paralelo...
